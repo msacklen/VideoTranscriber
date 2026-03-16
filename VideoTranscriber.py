@@ -2,75 +2,14 @@ import os
 import sys
 import time
 from pathlib import Path
-import argparse
 from faster_whisper import WhisperModel
 import warnings
 import tkinter as tk
 from tkinter import filedialog
 import subprocess
 
-# Suppress some warnings
+# Suppress some warnings (optional)
 # warnings.filterwarnings("ignore")
-
-def test_ffmpeg_bundled():
-    """Test if ffmpeg is accessible"""
-    ffmpeg_path = get_ffmpeg_path()
-    print(f"FFmpeg path: {ffmpeg_path}")
-    
-    try:
-        # Try to get ffmpeg version
-        result = subprocess.run([ffmpeg_path, '-version'], 
-                               capture_output=True, text=True, timeout=5)
-        if result.returncode == 0:
-            version_line = result.stdout.split('\n')[0]
-            print(f"✓ FFmpeg working: {version_line}")
-            return True
-        else:
-            print("✗ FFmpeg returned error")
-            return False
-    except Exception as e:
-        print(f"✗ FFmpeg test failed: {e}")
-        return False
-
-def get_ffmpeg_path():
-    """Get the path to ffmpeg executable, whether running as script or bundled exe"""
-    if getattr(sys, 'frozen', False):
-        # Running as compiled executable
-        base_path = sys._MEIPASS
-    else:
-        # Running as script
-        base_path = os.path.dirname(os.path.abspath(__file__))
-    
-    # Construct path to ffmpeg.exe
-    ffmpeg_path = os.path.join(base_path, 'ffmpeg.exe')
-    
-    # Verify it exists
-    if os.path.exists(ffmpeg_path):
-        return ffmpeg_path
-    else:
-        # Fallback to system PATH if bundled version not found
-        return 'ffmpeg'
-
-def setup_ffmpeg_environment():
-    """Add ffmpeg to PATH for subprocess calls"""
-    if getattr(sys, 'frozen', False):
-        base_path = sys._MEIPASS
-        # Add to PATH so subprocess can find it
-        os.environ['PATH'] = base_path + os.pathsep + os.environ['PATH']
-        return True
-    return False
-
-def setup_ffmpeg():
-    """Setup FFmpeg path if bundled with executable"""
-    if getattr(sys, 'frozen', False):
-        # Running as compiled executable
-        base_path = sys._MEIPASS
-        ffmpeg_path = os.path.join(base_path, 'ffmpeg.exe')
-        if os.path.exists(ffmpeg_path):
-            # Add to PATH
-            os.environ['PATH'] = base_path + os.pathsep + os.environ['PATH']
-            return True
-    return False
 
 def check_gpu_availability():
     """Check if CUDA is available for GPU acceleration"""
@@ -88,16 +27,6 @@ def check_gpu_availability():
                 print(f"✓ NVIDIA GPU detected: {gpu_name}")
                 return True
         except:
-            pass
-        
-        # Alternative check
-        try:
-            import torch
-            if torch.cuda.is_available():
-                gpu_name = torch.cuda.get_device_name(0)
-                print(f"✓ NVIDIA GPU detected via PyTorch: {gpu_name}")
-                return True
-        except ImportError:
             pass
         
         return True  # CUDA DLL exists but couldn't get details
@@ -458,12 +387,7 @@ def save_transcript(segments, info, original_file_path, language, task, device, 
 
 def main():
     """Main function"""
-    test_ffmpeg_bundled()
-    setup_ffmpeg_environment()
     try:
-        # Setup FFmpeg if bundled
-        setup_ffmpeg()
-        
         # Get input file
         file_path = get_file_from_user()
         if not file_path:
