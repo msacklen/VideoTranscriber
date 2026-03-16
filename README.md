@@ -1,9 +1,9 @@
 # Video Transcriber
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)]
-[![Windows](https://img.shields.io/badge/platform-windows-lightgrey.svg)]
-[![Downloads](https://img.shields.io/github/downloads/msacklen/VideoTranscriber/total)]
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)
+![Windows](https://img.shields.io/badge/platform-windows-lightgrey.svg)
+![Downloads](https://img.shields.io/github/downloads/msacklen/VideoTranscriber/total)
 
 A Windows desktop application that transcribes audio/video files using faster-whisper.
 Currently features a CLI, support for english & finnish transcription and GPU acceleration.
