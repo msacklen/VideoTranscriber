@@ -18,7 +18,7 @@ Built for internal use, so bugs can be expected. Might develop further to add su
 
 ## Installation
 
-### Option 1: Download Pre-built Executable (Recommended)
+### Option 1: Download Executable (Recommended)
 
 1. Go to the [Releases page](https://github.com/msacklen/VideoTranscriber/releases)
 2. Download `VideoTranscriber.exe`
