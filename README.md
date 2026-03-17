@@ -5,7 +5,7 @@
 ![Windows](https://img.shields.io/badge/platform-windows-lightgrey.svg)
 ![Downloads](https://img.shields.io/github/downloads/msacklen/VideoTranscriber/total)
 
-A Windows desktop application that transcribes audio/video files using faster-whisper.
+A Windows desktop application that transcribes audio/video files using [faster-whisper](https://github.com/SYSTRAN/faster-whisper).
 Currently features a CLI, support for english & finnish transcription and GPU acceleration.
 Built for internal use, so bugs can be expected. Might develop further to add support for other languages and other necessary features.
 
