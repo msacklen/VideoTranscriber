@@ -24,7 +24,7 @@ Built for internal use, so bugs can be expected. Might develop further to add su
 2. Download `VideoTranscriber.exe`
 3. Run the executable (no installation needed)
 
-### Option 2: Run from Source (WIP)
+### Option 2: Run from Source
 
 ```bash
 # Clone the repository
